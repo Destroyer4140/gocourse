@@ -2,6 +2,10 @@ package main
 
 import "fmt"
 
+/*
+Closure is a property of function under which callback function and varibale enclosed under that callback
+function whether it's global or local method are/is enclosed till the life of function.
+*/
 func main() {
 
 	sequence1 := adder()
@@ -22,6 +26,15 @@ func main() {
 	fmt.Println("sequence25", sequence2())
 	fmt.Println("sequence26", sequence2())
 
+	subtractor := func() func(int) int {
+		countdown := 99
+		return func(x int) int {
+			countdown -= x
+			return countdown
+		}
+	}()
+
+	fmt.Println("Using closure subtractor by 10 ->", subtractor(10))
 }
 
 func adder() func() int {
